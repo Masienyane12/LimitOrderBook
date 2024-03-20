@@ -101,8 +101,12 @@ public class Main {
         System.out.print("Enter order ID to delete: ");
         String orderId = scanner.next();
 
-        orderBook.deleteOrder(orderId);
-        System.out.println("Order deleted successfully.");
+        try {
+            orderBook.deleteOrder(orderId);
+            System.out.println("Order deleted successfully.");
+        }catch (IllegalArgumentException e){
+            System.out.println("You entered None existing order ID, Please check and Try again");
+        }
     }
 
     private static void modifyOrder(Scanner scanner) {
@@ -110,9 +114,13 @@ public class Main {
         String orderId = scanner.next();
         System.out.print("Enter new quantity: ");
         int newQuantity = scanner.nextInt();
+        try {
+            orderBook.modifyOrder(orderId, newQuantity);
+            System.out.println("Order modified successfully.");
+        }catch (IllegalArgumentException e){
+            System.out.println("You entered None existing order ID, Please check and Try again");
+        }
 
-        orderBook.modifyOrder(orderId, newQuantity);
-        System.out.println("Order modified successfully.");
     }
 
     private static void getOrdersInPriceRange(Scanner scanner) {
