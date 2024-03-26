@@ -28,6 +28,16 @@ public class OrderBook {
         System.out.println("Added Order: " + order);
     }
 
+    public void addOrder(Order order) {
+        orderMap.put(order.getId(),order);
+        if (order.getSide()== Side.BUY) {
+            buyOrders.add(order);
+        } else {
+            sellOrders.add(order);
+        }
+        System.out.println("Added Order: " + order);
+    }
+
     public void deleteOrder(String id) {
         Order order = orderMap.get(id);
         if (order == null) {
@@ -66,7 +76,6 @@ public class OrderBook {
         }
         return ordersInRange;
     }
-
     public Map<String, Order> getOrderMap() {
         return orderMap;
     }

@@ -10,9 +10,12 @@ public class SellOrderComparator implements Comparator<Order> {
             return -1; // Compare in ascending order for sell orders
         } else if (o1.getPrice() > o2.getPrice()) {
             return 1; // Compare in ascending order for sell orders
-        } else {
+        } else if (o1.getTimestamp() != o2.getTimestamp()) {
             // If prices are equal, orders are ordered based on their timestamps
             return Long.compare(o1.getTimestamp(), o2.getTimestamp());
+        }else {
+            // If timestamps are equal, compare based on order IDs
+            return o1.getId().compareTo(o2.getId());
         }
     }
 }

@@ -56,3 +56,21 @@ It will then present a menu with the following options to the user:
 5. View Current Orders: Display all current orders in the order book.
 6. Exit: Exit the application.
 
+
+## Design Approach for the Matching Engine
+
+1. Modularity and Separation of Concerns:
+    1.1 The matching engine is implemented as a separate class from the order book, promoting modularity.
+    1.2 The matching engine focuses solely on executing trades and matching buy and sell orders, while the order book class is responsible for storing orders and managing the order book.
+    1.3 This separation allows for easier maintenance, as changes to one component (e.g., the matching engine) do not directly impact the other component (e.g., the order book).
+
+
+2. Responsibilities and Single Responsibility Principle (SRP):
+
+Each method in the matching engine class (executeTrade, executeSellTrade, executeBuyTrade, matchOrders) has a clear responsibility:
+executeTrade: Determines the type of order (buy or sell) and delegates the trade execution to the appropriate method.
+executeSellTrade and executeBuyTrade: Handle the execution of sell and buy orders respectively, matching them with corresponding orders in the order book.
+matchOrders: Matches buy and sell orders based on price and quantity, facilitating the trade execution process.
+
+
+For Testing Purposes the  matchingEngine.matchOrders() method is called in the while loop of the displayMenu() method in the main method,  to take care of Order Matching as orders come in.  

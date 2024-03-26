@@ -102,9 +102,6 @@ class OrderBookTest {
         for (Order order : ordersInRange) {
             assertTrue(order.getPrice() >= 100.0 && order.getPrice() <= 120.0);
         }
-
-
-
     }
 
 }

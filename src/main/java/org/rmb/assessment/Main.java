@@ -3,6 +3,7 @@ package org.rmb.assessment;
 import org.rmb.assessment.comparator.BuyOrderComparator;
 import org.rmb.assessment.comparator.SellOrderComparator;
 import org.rmb.assessment.enums.Side;
+import org.rmb.assessment.model.MatchingEngine;
 import org.rmb.assessment.model.Order;
 import org.rmb.assessment.model.OrderBook;
 
@@ -11,8 +12,10 @@ import java.util.*;
 
 public class Main {
     private static OrderBook orderBook;
+    private static MatchingEngine matchingEngine;
     public static void main(String[] args) {
         orderBook = new OrderBook();
+        matchingEngine = new MatchingEngine(orderBook);
 
         // Load initial orders from CSV file
         loadOrdersFromCSV("orders.csv");
@@ -47,6 +50,7 @@ public class Main {
     private static void displayMenu() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
+            matchingEngine.matchOrders();
             System.out.println("\nMenu:");
             System.out.println("1. Add Order");
             System.out.println("2. Delete Order");
